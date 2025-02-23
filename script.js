@@ -36,6 +36,7 @@ function loadQuestion() {
     document.getElementById("next-btn").textContent = currentQuestionIndex === questions.length - 1 ? "Finish" : "Next";
 
     loadConfidenceRating();
+    updateTracker();
 }
 
 // ✅ Function to Select an Answer
@@ -71,6 +72,30 @@ function loadConfidenceRating() {
 function setConfidence(level) {
     confidenceRatings[currentQuestionIndex] = level;
     loadConfidenceRating(); // Update UI
+}
+
+// ✅ Function to Update Question Tracker
+function updateTracker() {
+    const trackerContainer = document.getElementById("question-tracker");
+    trackerContainer.innerHTML = "";
+
+    for (let i = 0; i < questions.length; i++) {
+        const trackerBox = document.createElement("div");
+        trackerBox.classList.add("tracker-box");
+
+        // If the question has been answered, mark it
+        if (studentAnswers[i]) {
+            trackerBox.classList.add("answered");
+        }
+
+        trackerBox.textContent = i + 1;
+        trackerBox.onclick = () => {
+            currentQuestionIndex = i;
+            loadQuestion();
+        };
+
+        trackerContainer.appendChild(trackerBox);
+    }
 }
 
 // ✅ Next Question
