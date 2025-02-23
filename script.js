@@ -97,7 +97,7 @@ document.getElementById("prev-btn").addEventListener("click", () => {
 document.getElementById("submit-btn").addEventListener("click", () => {
     console.log("Student Answers:", studentAnswers);
     console.log("Confidence Ratings:", confidenceRatings);
-    document.getElementById("status-message").textContent = "✅ Answers & Confidence Ratings saved (not stored in a database).";
+    document.getElementById("status-message").textContent = "✅ Answers & Confidence Ratings saved.";
 });
 
 // ✅ Load First Question

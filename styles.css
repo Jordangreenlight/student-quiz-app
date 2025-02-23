@@ -1,3 +1,4 @@
+/* ✅ General Styles */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -14,6 +15,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* ✅ Buttons */
 .buttons {
     margin-top: 20px;
 }
@@ -22,10 +24,10 @@ button {
     padding: 10px 15px;
     margin: 5px;
     cursor: pointer;
-}
-
-.submit-section {
-    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
 }
 
 button:disabled {
@@ -33,19 +35,35 @@ button:disabled {
     cursor: not-allowed;
 }
 
+/* ✅ Hide confidence & submit sections initially */
+#confidence-container {
+    display: none;
+}
+
+#submit-btn {
+    display: none;
+}
+
 /* ✅ Star Rating Styles */
-#stars {
-    font-size: 30px;
+.star-rating {
+    direction: rtl;
+    display: inline-block;
+    font-size: 2em;
+    unicode-bidi: bidi-override;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    color: #ddd;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
+    font-size: 2em;
 }
 
-.star {
-    color: #ccc;
-    transition: color 0.3s;
-}
-
-.star.selected {
-    color: gold;
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f5b301;
 }
