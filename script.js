@@ -6,8 +6,7 @@ const questions = [
 ];
 
 let currentQuestionIndex = 0;
-const studentAnswers = {};  // Stores answers
-const confidenceRatings = {}; // Stores confidence ratings
+const studentAnswers = {};
 
 // ✅ Function to Load a Question
 function loadQuestion() {
@@ -26,7 +25,6 @@ function loadQuestion() {
         // Highlight selected answer if exists
         if (studentAnswers[currentQuestionIndex] === option) {
             button.style.backgroundColor = "lightblue";
-            document.getElementById("confidence-container").style.display = "block"; // Show confidence rating
         }
 
         optionsDiv.appendChild(button);
@@ -34,75 +32,18 @@ function loadQuestion() {
 
     document.getElementById("prev-btn").disabled = currentQuestionIndex === 0;
     document.getElementById("next-btn").textContent = currentQuestionIndex === questions.length - 1 ? "Finish" : "Next";
-
-    loadConfidenceRating();
-    updateTracker();
 }
 
 // ✅ Function to Select an Answer
 function selectAnswer(answer) {
     studentAnswers[currentQuestionIndex] = answer;
-    document.getElementById("confidence-container").style.display = "block"; // Show confidence rating after answer selection
-    loadQuestion();
-}
-
-// ✅ Function to Load Confidence Rating UI
-function loadConfidenceRating() {
-    const starsContainer = document.getElementById("stars");
-    starsContainer.innerHTML = ""; // Clear existing stars
-
-    for (let i = 1; i <= 5; i++) {
-        const star = document.createElement("span");
-        star.textContent = "★";
-        star.classList.add("star");
-
-        // Highlight stars if selected
-        if (confidenceRatings[currentQuestionIndex] >= i) {
-            star.classList.add("selected");
-        }
-
-        // Click event for selecting confidence
-        star.onclick = () => setConfidence(i);
-
-        starsContainer.appendChild(star);
-    }
-}
-
-// ✅ Function to Set Confidence Rating
-function setConfidence(level) {
-    confidenceRatings[currentQuestionIndex] = level;
-    loadConfidenceRating(); // Update UI
-}
-
-// ✅ Function to Update Question Tracker
-function updateTracker() {
-    const trackerContainer = document.getElementById("question-tracker");
-    trackerContainer.innerHTML = "";
-
-    for (let i = 0; i < questions.length; i++) {
-        const trackerBox = document.createElement("div");
-        trackerBox.classList.add("tracker-box");
-
-        // If the question has been answered, mark it
-        if (studentAnswers[i]) {
-            trackerBox.classList.add("answered");
-        }
-
-        trackerBox.textContent = i + 1;
-        trackerBox.onclick = () => {
-            currentQuestionIndex = i;
-            loadQuestion();
-        };
-
-        trackerContainer.appendChild(trackerBox);
-    }
+    loadQuestion(); // Reload question to show selection
 }
 
 // ✅ Next Question
 document.getElementById("next-btn").addEventListener("click", () => {
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
-        document.getElementById("confidence-container").style.display = "none"; // Hide until next answer
         loadQuestion();
     } else {
         document.getElementById("submit-btn").style.display = "block";
@@ -113,16 +54,14 @@ document.getElementById("next-btn").addEventListener("click", () => {
 document.getElementById("prev-btn").addEventListener("click", () => {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
-        document.getElementById("confidence-container").style.display = "none"; // Hide until answer selected
         loadQuestion();
     }
 });
 
-// ✅ Submit Answers (Logs to Console for Now)
+// ✅ Submit Answers (Just Logs to Console for Now)
 document.getElementById("submit-btn").addEventListener("click", () => {
     console.log("Student Answers:", studentAnswers);
-    console.log("Confidence Ratings:", confidenceRatings);
-    document.getElementById("status-message").textContent = "✅ Answers & Confidence Ratings saved.";
+    document.getElementById("status-message").textContent = "✅ Answers saved (not stored in a database).";
 });
 
 // ✅ Load First Question
