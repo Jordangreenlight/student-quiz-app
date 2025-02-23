@@ -62,6 +62,11 @@ document.getElementById("prev-btn").addEventListener("click", () => {
 document.getElementById("submit-btn").addEventListener("click", () => {
     console.log("Student Answers:", studentAnswers);
     document.getElementById("status-message").textContent = "✅ Answers saved (not stored in a database).";
+
+    // Display the result image
+    const resultImage = document.getElementById("result-image");
+    resultImage.src = "https://archive-images.prod.global.a201836.reutersmedia.net/2012/08/15/CBRE87E1PTB00.JPG";
+    resultImage.style.display = "block";
 });
 
 // ✅ Load First Question
