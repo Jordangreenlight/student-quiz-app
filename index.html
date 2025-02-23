@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Quiz</h1>
+
+        <!-- ✅ Question Display -->
+        <div id="question-container">
+            <p id="question-text">Loading question...</p>
+            <div id="options"></div>
+        </div>
+
+        <!-- ✅ Confidence Rating (Hidden by Default) -->
+        <div id="confidence-container" style="display: none;">
+            <p>How confident are you in your answer?</p>
+            <div id="stars">
+                ★ ★ ★ ★ ★
+            </div>
+        </div>
+
+        <!-- ✅ Navigation Buttons -->
+        <div class="buttons">
+            <button id="prev-btn" disabled>Previous</button>
+            <button id="next-btn">Next</button>
+        </div>
+
+        <!-- ✅ Submission Section -->
+        <div class="submit-section">
+            <button id="submit-btn" style="display: none;">Submit Answers</button>
+            <p id="status-message"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
